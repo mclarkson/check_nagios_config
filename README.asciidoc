@@ -9,7 +9,17 @@ Check Nagios Config
 Check the nagios configuration with 'nagios -v'. There are many situations
 where a nagios configuration can sit broken without anyone noticing.
 
-Supports chroot'ed Nagios environments.
+Supports chroot'ed Nagios environments and can provide data for graphing.
+
+*INSTALL*
+
+Example:
+
+----
+wget https://raw.github.com/mclarkson/check_nagios_config/master/check_nagios_config
+chmod +x check_nagios_config
+mv check_nagios_config /usr/lib64/nagios/plugins/
+----
 
 *EXAMPLE OUTPUT*
 
