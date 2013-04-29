@@ -44,8 +44,6 @@ Usage: check_nagios_config [options]
             (Default is: /etc/nagios/nagios.cfg)
  -n FILE :  Location of nagios main executable file, nagios.
             (Default is: /usr/sbin/nagios)
- -n FILE :  Location of nagios main executable file, nagios.
-            (Default is: /usr/sbin/nagios)
  -x DIR  :  Run in a chroot environment based at DIR.
  -X FILE :  Location of the chroot executable file.
             (Default is: /usr/sbin/chroot)
