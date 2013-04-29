@@ -1,0 +1,57 @@
+++++
+<img src="http://www.smorg.co.uk/images/check_nagios_config.png"
+alt="Nagios GUI Screenshot" style="float:none" />
+++++
+
+Check Nagios Config
+-------------------
+
+Check the nagios configuration with 'nagios -v'. There are many situations
+where a nagios configuration can sit broken without anyone noticing.
+
+Supports chroot'ed Nagios environments.
+
+*EXAMPLE OUTPUT*
+
+----
+WARNING:  1 warnings, 0 errors, 72 hosts, 1430 services.
+
+CRITICAL:  0 warnings, 1 errors, 72 hosts, 1430 services.
+
+OK: 0 warnings, 0 errors, 72 hosts, 1430 services.
+
+----
+
+*MANUAL PAGE*
+
+----
+$ ./check_nagios_config -h
+
+Usage: check_nagios_config [options]
+
+ -h      :  Display this help text.
+ -c FILE :  Location of nagios configuration file, nagios.cfg.
+            (Default is: /etc/nagios/nagios.cfg)
+ -n FILE :  Location of nagios main executable file, nagios.
+            (Default is: /usr/sbin/nagios)
+ -n FILE :  Location of nagios main executable file, nagios.
+            (Default is: /usr/sbin/nagios)
+ -x DIR  :  Run in a chroot environment based at DIR.
+ -X FILE :  Location of the chroot executable file.
+            (Default is: /usr/sbin/chroot)
+ -s      :  Use sudo to run the command.
+ -p      :  Add performance data output for graphing.
+ -W NUM  :  Don't alert until NUM warnings have been reached.
+            (Default is: 0)
+ -C NUM  :  Don't alert until NUM errors have been reached.
+            (Usually zero unless there's a really good reason.)
+            (Default is: 0)
+
+Example:
+  Check the configuration, alerting on any errors or warnings that
+  Nagios reports. Also create performance data for graphing.
+
+    ./check_nagios_config -p
+
+----
+
