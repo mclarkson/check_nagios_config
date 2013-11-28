@@ -41,6 +41,7 @@ UNKN=3
 
 CHROOTBASE=
 USESUDO=0
+LONGOUTPUT=0
 WITHPERF=0
 SUDO="sudo "
 
@@ -79,7 +80,9 @@ main()
         out="$out num_hosts=$NHSTS num_services=$NSVCS"
     }
 
-    echo "$out"
+    [[ $LONGOUTPUT -eq 1 ]] && out="$out\n$LONGO"
+
+    echo -e "$out"
 
     exit $retval
 }
@@ -130,6 +133,7 @@ usage()
     echo "            (Default is: $CHROOT)"
     echo " -s      :  Use sudo to run the command."
     echo " -p      :  Add performance data output for graphing."
+    echo " -l      :  Add long output excluding the lines starting with 'Processing'."
     echo " -W NUM  :  Don't alert until NUM warnings have been reached."
     echo "            (Default is: $WARNLVL)"
     echo " -C NUM  :  Don't alert until NUM errors have been reached."
@@ -160,6 +164,23 @@ do_check()
     NHSTS=`grep -o "Checked [0-9]\+ hosts" $F | ( read a b c d; echo $b )`
     NWARN=`grep -o "Total Warnings: *[0-9]\+" $F | ( read a b c d; echo $c )`
     NERRS=`grep -o "Total Errors: *[0-9]\+" $F | ( read a b c d; echo $c )`
+    LONGO=`grep -v '^Processing object config ' $F`
+
+    if [[ -z "$NSVCS" ]]; then
+      NSVCS=0
+    fi
+
+    if [[ -z "$NHSTS" ]]; then
+      NHSTS=0
+    fi
+
+    if [[ -z "$NWARN" ]]; then
+      NWARN=`grep -c 'Warning: ' $F`
+    fi
+
+    if [[ -z "$NERRS" ]]; then
+      NERRS=`grep -c 'Error: ' $F`
+    fi
 
     rm $F
 }
@@ -184,6 +205,8 @@ parse_options()
             -x) CHROOTBASE="$2" ; shift
                 # Append '/' if not already appended
                 CHROOTBASE="${CHROOTBASE%/}${CHROOTBASE:+/}"
+            ;;
+            -l) LONGOUTPUT=1
             ;;
             -s) USESUDO=1
             ;;

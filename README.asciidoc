@@ -49,6 +49,8 @@ Usage: check_nagios_config [options]
             (Default is: /usr/sbin/chroot)
  -s      :  Use sudo to run the command.
  -p      :  Add performance data output for graphing.
+ -l      :  Add long output excluding the lines starting with 'Processing'.
+
  -W NUM  :  Don't alert until NUM warnings have been reached.
             (Default is: 0)
  -C NUM  :  Don't alert until NUM errors have been reached.
