@@ -164,22 +164,22 @@ do_check()
     NHSTS=`grep -o "Checked [0-9]\+ hosts" $F | ( read a b c d; echo $b )`
     NWARN=`grep -o "Total Warnings: *[0-9]\+" $F | ( read a b c d; echo $c )`
     NERRS=`grep -o "Total Errors: *[0-9]\+" $F | ( read a b c d; echo $c )`
-    LONGO=`grep -v '^Processing object config ' $F`
+    LONGO=`grep -v '^Processing' $F`
 
     if [[ -z "$NSVCS" ]]; then
-      NSVCS=0
+        NSVCS=0
     fi
 
     if [[ -z "$NHSTS" ]]; then
-      NHSTS=0
+        NHSTS=0
     fi
 
     if [[ -z "$NWARN" ]]; then
-      NWARN=`grep -c 'Warning: ' $F`
+        NWARN=`grep -c 'Warning: ' $F`
     fi
 
     if [[ -z "$NERRS" ]]; then
-      NERRS=`grep -c 'Error: ' $F`
+        NERRS=`grep -c 'Error: ' $F`
     fi
 
     rm $F
