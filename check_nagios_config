@@ -6,9 +6,11 @@
 #    http://www.gnu.org/licenses/gpl.html .
 #
 # File:     check_nagios_config
-# Date:     29 Nov 2013
+# Date:     26 Apr 2013
 # Version:  0.11
-# Modified:
+# Modified: 
+#           abooitt 29 Nov 2013
+#             Handle errors and warnings before preflight check.
 #
 # Purpose:  Check the nagios.cfg file using 'nagios -v'.
 #
